@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
 
     private float moveX;
+    private float moveY;
 
     void Start()
     {
@@ -27,23 +28,33 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Pega input do teclado (A/D ou Setas)
         moveX = Input.GetAxisRaw("Horizontal");
 
-        // Animação
-        bool isWalking = moveX != 0;
-        animator.SetBool("isWalking", isWalking);
+        // Animação de andar
+        animator.SetBool("isWalking", moveX != 0);
 
-        // Flip do sprite se mudar de direção
-        if (moveX > 0) spriteRenderer.flipX = false;
-        else if (moveX < 0) spriteRenderer.flipX = true;
-        
+        // Verifica se está no chão (para animar corretamente)
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // Verifica se está caindo (velocidade vertical negativa e não está no chão)
+        bool isFalling = rb.linearVelocity.y < -0.1f && !isGrounded;
+        animator.SetBool("isFalling", isFalling);
+
+        // Verifica se está pulando (velocidade vertical positiva e não no chão)
+        bool isJumping = rb.linearVelocity.y > 0.1f && !isGrounded;
+        animator.SetBool("isJumping", isJumping);
+
+        // Pulo
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            Debug.Log("Jump!");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+
+        // Flip do sprite
+        if (moveX > 0) spriteRenderer.flipX = false;
+        else if (moveX < 0) spriteRenderer.flipX = true;
     }
+
 
     void FixedUpdate()
     {
@@ -53,10 +64,6 @@ public class PlayerMovement : MonoBehaviour
         
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("Jump!");
-        }
 
 
     }
