@@ -2,8 +2,9 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Platforms
   layers:
   - Default
   - TransparentFX
@@ -11,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Platforms
   - 
   - 
   - 
@@ -41,3 +42,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 3796656883
+    locked: 0
+  - name: Entities
+    uniqueID: 3543993495
+    locked: 0
+  - name: Foreground
+    uniqueID: 3640926097
+    locked: 0
+  - name: Particles
+    uniqueID: 234218615
+    locked: 0
+  - name: UI
+    uniqueID: 1221273117
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - Light Layer default
