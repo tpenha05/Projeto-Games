@@ -3,8 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
+<<<<<<< HEAD
   tags:
   - Platforms
+=======
+  tags: []
+>>>>>>> d8ddb31f966eecddfdef676fe72510d7ac17e9d6
   layers:
   - Default
   - TransparentFX
@@ -12,7 +16,11 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< HEAD
   - Platforms
+=======
+  - Ground
+>>>>>>> d8ddb31f966eecddfdef676fe72510d7ac17e9d6
   - 
   - 
   - 
@@ -42,6 +50,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
   - name: BG
     uniqueID: 3796656883
     locked: 0
@@ -60,3 +69,7 @@ TagManager:
   m_RenderingLayers:
   - Default
   - Light Layer default
+=======
+  m_RenderingLayers:
+  - Default
+>>>>>>> d8ddb31f966eecddfdef676fe72510d7ac17e9d6

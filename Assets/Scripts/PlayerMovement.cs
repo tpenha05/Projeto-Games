@@ -8,7 +8,16 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
+    
+    public float jumpForce = 7f;
+    public LayerMask groundLayer;
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+
+    private bool isGrounded;
+
     private float moveX;
+    private float moveY;
 
     void Start()
     {
@@ -19,20 +28,43 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Pega input do teclado (A/D ou Setas)
         moveX = Input.GetAxisRaw("Horizontal");
 
-        // Animação
-        bool isWalking = moveX != 0;
-        animator.SetBool("isWalking", isWalking);
+        // Animação de andar
+        animator.SetBool("isWalking", moveX != 0);
 
-        // Flip do sprite se mudar de direção
+        // Verifica se está no chão (para animar corretamente)
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // Verifica se está caindo (velocidade vertical negativa e não está no chão)
+        bool isFalling = rb.linearVelocity.y < -0.1f && !isGrounded;
+        animator.SetBool("isFalling", isFalling);
+
+        // Verifica se está pulando (velocidade vertical positiva e não no chão)
+        bool isJumping = rb.linearVelocity.y > 0.1f && !isGrounded;
+        animator.SetBool("isJumping", isJumping);
+
+        // Pulo
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
+        // Flip do sprite
         if (moveX > 0) spriteRenderer.flipX = false;
         else if (moveX < 0) spriteRenderer.flipX = true;
     }
 
+
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
+        Vector2 velocity = rb.linearVelocity;
+        velocity.x = moveX * moveSpeed;
+        rb.linearVelocity = velocity;
+        
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+
+
     }
 }
