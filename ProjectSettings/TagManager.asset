@@ -54,6 +54,9 @@ TagManager:
   - name: Particles
     uniqueID: 3734464099
     locked: 0
+  - name: Player
+    uniqueID: 884255881
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer default
