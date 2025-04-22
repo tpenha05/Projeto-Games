@@ -2,53 +2,39 @@ using UnityEngine;
 
 public class ParallaxSprite : MonoBehaviour
 {
-    private Vector2 startPos; // Initial position of the tilemap
-    private float length; // Length of the tilemap in the X-axis
-    private Camera cam; // Reference to the main camera
+    private Vector3 startPos;
+    private float length;
+    private Camera cam;
 
-    [Tooltip("0 = move with camera, 1 = no movement")]
-    public float ParallaxAmountX; // Controls parallax movement on the X-axis
-    public float ParallaxAmountY; // Controls parallax movement on the Y-axis
-    public bool loop = true;
-
-    private SpriteRenderer SpriteRenderer; // Reference to the TilemapRenderer
-    private Bounds spriteBounds; // Bounds of the tilemap
-    public Vector2 camStartPos; // Initial position of the camera
+    [Tooltip("0 = move com a câmera, 1 = completamente fixo")]
+    public float ParallaxAmountX = 0.5f;
+    public float ParallaxAmountY = 0f;
+    public bool loop = false;
 
     void Start()
     {
         cam = Camera.main;
-        SpriteRenderer = GetComponent<SpriteRenderer>();
-        spriteBounds = SpriteRenderer.localBounds;
+        startPos = transform.position;
 
-        startPos = transform.position; // Store the initial position of the tilemap
-        //camStartPos = cam.transform.position; // Store the initial position of the camera
-        camStartPos = cam.transform.position;
-        length = spriteBounds.size.x; // Get the length of the tilemap
+        var sr = GetComponent<SpriteRenderer>();
+        length = sr.bounds.size.x;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        // Calculate the distance the camera has moved since the start position
-        float distanceX = (cam.transform.position.x - camStartPos.x) * ParallaxAmountX;
-        float distanceY = (cam.transform.position.y - camStartPos.y) * ParallaxAmountY;
+        Vector3 camPos = cam.transform.position;
+        float deltaX = camPos.x * ParallaxAmountX;
+        float deltaY = camPos.y * ParallaxAmountY;
 
-        // Apply the parallax effect on both X and Y axes, relative to the starting position
-        transform.position = new Vector2(startPos.x + distanceX, startPos.y + distanceY);
-
-        // Infinite scrolling logic for the X-axis
-        float movementX = (cam.transform.position.x - camStartPos.x) * (1 - ParallaxAmountX);
+        transform.position = new Vector3(startPos.x + deltaX, startPos.y + deltaY, transform.position.z);
 
         if (loop)
         {
-            if (movementX > startPos.x + length)
-            {
+            float temp = camPos.x * (1 - ParallaxAmountX);
+            if (temp > startPos.x + length)
                 startPos.x += length;
-            }
-            else if (movementX < startPos.x - length)
-            {
+            else if (temp < startPos.x - length)
                 startPos.x -= length;
-            }
         }
     }
 }
