@@ -2,20 +2,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // ========== Vida ==========
+    public int maxHealth = 5;
+    private int currentHealth;
+
+    // ========== Movimento ==========
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
 
+    // ========== Referências ==========
     private Rigidbody2D rb;
     private Animator animator;
+    private float moveX;
     private SpriteRenderer spriteRenderer;
 
+    // ========== Verificação de Chão ==========
     public LayerMask groundLayer;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
-
     private bool isGrounded;
 
-    private float moveX;
+
 
     // ========== Ataque Melee ==========
     public Transform attackPoint;
@@ -25,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -59,11 +67,16 @@ public class PlayerMovement : MonoBehaviour
         else if (moveX < 0) spriteRenderer.flipX = true;
 
         // Ataque
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetMouseButtonDown(0) )
         {
             animator.SetTrigger("Attack");
-            Attack();
+            
         }
+    }
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        Debug.Log("Vida atual: " + currentHealth);
     }
 
     void FixedUpdate()
