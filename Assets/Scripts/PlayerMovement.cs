@@ -62,9 +62,19 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
-        // Flip do sprite
-        if (moveX > 0) spriteRenderer.flipX = false;
-        else if (moveX < 0) spriteRenderer.flipX = true;
+        // Flip do sprite e ajuste do attackPoint
+        if (moveX > 0)
+        {
+            spriteRenderer.flipX = false;
+            if (attackPoint != null)
+                attackPoint.localPosition = new Vector3(Mathf.Abs(0.2f), attackPoint.localPosition.y, attackPoint.localPosition.z);
+        }
+        else if (moveX < 0)
+        {
+            spriteRenderer.flipX = true;
+            if (attackPoint != null)
+                attackPoint.localPosition = new Vector3(-Mathf.Abs(0.262f), attackPoint.localPosition.y, attackPoint.localPosition.z);
+        }
 
         // Ataque
         if (Input.GetMouseButtonDown(0) )
