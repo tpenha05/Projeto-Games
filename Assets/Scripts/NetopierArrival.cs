@@ -9,14 +9,25 @@ public class NetopierArrival : MonoBehaviour
     public GameObject player;
 
     public float flightDuration = 2.5f;
-    public float novoMinX = -120.75f; // Novo limite esquerdo da câmera
-    public float novoMaxX = 300f;     // (opcional) novo limite direito da câmera
+    public float novoMinX = -127.25f;
+    public float novoMaxX = 300f;
 
     private Vector3 startScale = new Vector3(0.3f, 0.3f, 0.3f);
     private Vector3 endScale = Vector3.one;
 
+    public float zoomInicio = 2.8f;
+    public float zoomDuranteVoo = 4.2f;
+    public float zoomFinalPlayer = 5.0f;
+    public float tempoZoomNoPlayer = 1.5f;
+
     void Start()
     {
+        StartCoroutine(DelayedStart());
+    }
+
+    IEnumerator DelayedStart()
+    {
+        yield return null;
         StartCoroutine(AnimarChegada());
     }
 
@@ -25,57 +36,66 @@ public class NetopierArrival : MonoBehaviour
         GameObject netopier = Instantiate(netopierPrefab, startPoint.position, Quaternion.identity);
         netopier.transform.localScale = startScale;
 
-        // Aplica fade-in de opacidade nos sprites
-        SpriteRenderer[] sprites = netopier.GetComponentsInChildren<SpriteRenderer>();
-        foreach (var sr in sprites)
-        {
-            Color c = sr.color;
-            sr.color = new Color(c.r, c.g, c.b, 0.3f);
-        }
+        // Acessa a parte do morcego que deve ser movimentada
+        Transform mover = netopier.transform.Find("Netopier/Torso");
 
-        // Oculta o player real durante o voo
         player.SetActive(false);
 
-        // Faz a câmera seguir o Netopier durante o voo
         CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
         if (camFollow != null)
         {
             camFollow.target = netopier.transform;
-            camFollow.minX = -9999f; // liberar movimento temporário
+            camFollow.minX = -9999f;
         }
 
-        // Voo interpolado com escala e opacidade
+        Camera.main.orthographicSize = zoomInicio;
+        yield return StartCoroutine(ZoomCamera(zoomDuranteVoo, flightDuration));
+
         float elapsed = 0f;
         while (elapsed < flightDuration)
         {
             float t = elapsed / flightDuration;
 
-            netopier.transform.position = Vector3.Lerp(startPoint.position, dropPoint.position, t);
-            netopier.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            if (mover != null)
+                mover.position = Vector3.Lerp(startPoint.position, dropPoint.position, t);
 
-            foreach (var sr in sprites)
-            {
-                Color c = sr.color;
-                sr.color = new Color(c.r, c.g, c.b, Mathf.Lerp(0f, 1f, t * 4f));
-            }
+            netopier.transform.localScale = Vector3.Lerp(startScale, endScale, t);
 
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Solta o player real no chão
         player.transform.position = dropPoint.position;
         player.SetActive(true);
 
-        // Destroi o netopier visual
         Destroy(netopier);
 
-        // Atualiza a câmera para seguir o player real e os novos limites
         if (camFollow != null)
         {
             camFollow.target = player.transform;
+
+            yield return StartCoroutine(ZoomCamera(zoomFinalPlayer, 0.7f));
+            yield return new WaitForSeconds(tempoZoomNoPlayer);
+            yield return StartCoroutine(ZoomCamera(5.5f, 1.5f));
+
             camFollow.minX = novoMinX;
             camFollow.maxX = novoMaxX;
         }
+    }
+
+    IEnumerator ZoomCamera(float targetSize, float duration)
+    {
+        float startSize = Camera.main.orthographicSize;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            Camera.main.orthographicSize = Mathf.Lerp(startSize, targetSize, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Camera.main.orthographicSize = targetSize;
     }
 }
