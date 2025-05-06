@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 6237ad2be3467774db541ead252de3ac
+guid: ad02d725a20c08f44aa8ab35307214a9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9136834448258697486
-    second: bubble_0
+      213: -1815884638939576673
+    second: ChatGPT Image 16 de abr. de 2025, 08_59_32_0
   - first:
-      213: 1762854388791719718
-    second: bubble_1
+      213: -1350676903743729780
+    second: ChatGPT Image 16 de abr. de 2025, 08_59_32_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bubble_0
+      name: ChatGPT Image 16 de abr. de 2025, 08_59_32_0
       rect:
         serializedVersion: 2
         x: 19
-        y: 0
-        width: 1003
-        height: 1019
+        y: 16
+        width: 971
+        height: 1003
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,20 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f6fcf37a71733180800000000000000
-      internalID: -9136834448258697486
+      spriteID: f960be6ba8eacc6e0800000000000000
+      internalID: -1815884638939576673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bubble_1
+      name: ChatGPT Image 16 de abr. de 2025, 08_59_32_1
       rect:
         serializedVersion: 2
-        x: 224
-        y: 615
-        width: 6
-        height: 8
+        x: 415
+        y: 159
+        width: 194
+        height: 199
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6273ba20abae67810800000000000000
-      internalID: 1762854388791719718
+      spriteID: c8fc702238e614de0800000000000000
+      internalID: -1350676903743729780
       vertices: []
       indices: 
       edges: []
@@ -186,8 +186,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bubble_0: -9136834448258697486
-      bubble_1: 1762854388791719718
+      ChatGPT Image 16 de abr. de 2025, 08_59_32_0: -1815884638939576673
+      ChatGPT Image 16 de abr. de 2025, 08_59_32_1: -1350676903743729780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
