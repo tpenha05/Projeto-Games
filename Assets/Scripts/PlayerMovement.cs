@@ -89,6 +89,24 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Vida atual: " + currentHealth);
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("Player tomou dano! Vida restante: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player morreu!");
+        // Aqui você pode adicionar lógica de morte, animação ou Game Over
+        Destroy(gameObject);
+    }
+
     void FixedUpdate()
     {
         Vector2 velocity = rb.linearVelocity;

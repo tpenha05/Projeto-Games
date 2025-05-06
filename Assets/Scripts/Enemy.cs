@@ -3,6 +3,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int health = 3;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void TakeDamage(int damage)
     {
@@ -17,7 +23,18 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Inimigo morreu!");
+        if (animator != null)
+        {
+            animator.SetTrigger("Die");
+        }
+        else
+        {
+            DestroySelf();
+        }
+    }
+
+    public void DestroySelf()
+    {
         Destroy(gameObject);
     }
 }
