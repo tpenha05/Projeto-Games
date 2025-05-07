@@ -1,13 +1,43 @@
 fileFormatVersion: 2
-guid: 6237ad2be3467774db541ead252de3ac
+guid: 29de09d899cb76d47937e156746bcacb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9136834448258697486
-    second: bubble_0
+      213: -5371525628942018229
+    second: flor_sprite_0
   - first:
-      213: 1762854388791719718
-    second: bubble_1
+      213: 7440241354474400524
+    second: flor_sprite_1
+  - first:
+      213: -8946334884834445821
+    second: flor_sprite_2
+  - first:
+      213: 2576796453523816228
+    second: flor_sprite_3
+  - first:
+      213: -8114495787297905665
+    second: flor_sprite_4
+  - first:
+      213: -2318888045371562144
+    second: flor_sprite_5
+  - first:
+      213: -6094081845203676076
+    second: flor_sprite_6
+  - first:
+      213: 3000955268156857228
+    second: flor_sprite_7
+  - first:
+      213: -4708977762810347318
+    second: flor_sprite_8
+  - first:
+      213: -4676994624904731886
+    second: flor_sprite_9
+  - first:
+      213: 5722166394908819178
+    second: flor_sprite_10
+  - first:
+      213: -3419267068606262582
+    second: flor_sprite_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -54,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,45 +159,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bubble_0
+      name: flor_sprite_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 1003
-        height: 1019
+        x: 30
+        y: 180
+        width: 271
+        height: 389
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f6fcf37a71733180800000000000000
-      internalID: -9136834448258697486
+      spriteID: c0b2e90871c014760800000000000000
+      internalID: 7440241354474400524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bubble_1
+      name: flor_sprite_6
       rect:
         serializedVersion: 2
-        x: 224
-        y: 615
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 314
+        y: 170
+        width: 300
+        height: 421
+      alignment: 9
+      pivot: {x: 0.5122343, y: 0.5232478}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6273ba20abae67810800000000000000
-      internalID: 1762854388791719718
+      spriteID: 4545a7089d87d6ba0800000000000000
+      internalID: -6094081845203676076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flor_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 171
+        width: 295
+        height: 414
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac0c9788ca956aeb0800000000000000
+      internalID: -4708977762810347318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flor_sprite_11
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 177
+        width: 303
+        height: 415
+      alignment: 9
+      pivot: {x: 0.5484527, y: 0.51179194}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac2588797b25c80d0800000000000000
+      internalID: -3419267068606262582
       vertices: []
       indices: 
       edges: []
@@ -176,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9278045bb4b725e4eb0a15984419af54
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +260,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bubble_0: -9136834448258697486
-      bubble_1: 1762854388791719718
+      flor_sprite_0: -5371525628942018229
+      flor_sprite_1: 7440241354474400524
+      flor_sprite_10: 5722166394908819178
+      flor_sprite_11: -3419267068606262582
+      flor_sprite_2: -8946334884834445821
+      flor_sprite_3: 2576796453523816228
+      flor_sprite_4: -8114495787297905665
+      flor_sprite_5: -2318888045371562144
+      flor_sprite_6: -6094081845203676076
+      flor_sprite_7: 3000955268156857228
+      flor_sprite_8: -4708977762810347318
+      flor_sprite_9: -4676994624904731886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
