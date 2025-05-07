@@ -5,11 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Platforms
-<<<<<<< HEAD
   - Ground
-=======
   - Health
->>>>>>> b2880ae4cd4af8d5b1ac0ba81cfda2b845b3790e
   layers:
   - Default
   - TransparentFX
