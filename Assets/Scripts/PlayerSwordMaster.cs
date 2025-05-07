@@ -59,6 +59,7 @@ public class PlayerSwordMaster : MonoBehaviour
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
         anim.SetBool("isJumping", isJumping);
         anim.SetBool("isRunning", isRunning);
+        anim.SetBool("isGrounded", isGrounded);
     }
 
     void FixedUpdate()
@@ -66,7 +67,7 @@ public class PlayerSwordMaster : MonoBehaviour
         // Verifica se está no chão usando uma caixa
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, groundLayer);
 
-        // Debug.Log("isGrounded: " + isGrounded);
+        Debug.Log("isGrounded: " + isGrounded);
 
         if (isGrounded && rb.linearVelocity.y <= 0)
         {
